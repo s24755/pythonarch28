@@ -1,7 +1,8 @@
 import math
-def ilosc_opakowan(dlugosc_podlogi, szerokosc_podlogi, dlugosc_panela, szerokosc_panela, ilosc_paneli_w_opakowaniu):
-    powierzchnia_pomieszczenia = (dlugosc_podlogi * szerokosc_podlogi) * 1.1
-    powierzchnia_pakietu_paneli = dlugosc_panela * szerokosc_panela * ilosc_paneli_w_opakowaniu
-    ilosc_paneli = math.ceil(powierzchnia_pomieszczenia / powierzchnia_pakietu_paneli)
-    ilosc_opakowan = math.ceil(ilosc_paneli / ilosc_paneli_w_opakowaniu)
-    return ilosc_opakowan
+def ilosc_opakowan(podlogiA, podlogiB, paneliA,  paneliB, iloscPaneli):
+    powierzchnia = podlogiA*podlogiB*1.1
+    powierzchniaPanelaOpakowanie = paneliA*paneliB*iloscPaneli
+    iloscOpakowan = powierzchnia/powierzchniaPanelaOpakowanie
+    return print(round(iloscOpakowan, 1))
+
+ilosc_opakowan(25, 50, 2.4, 5, 10)
