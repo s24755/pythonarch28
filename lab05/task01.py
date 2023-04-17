@@ -92,43 +92,43 @@ send_grades_email(data, email_server, email_from, email_password, max_points)
 save_data(filename, data)
 
 with open("password.txt", "r") as file:
-email_password = file.read().strip()
+    email_password = file.read().strip()
 
 while True:
-print()
-print("Co chcesz zrobić?")
-print("1. Wystawić oceny")
-print("2. Usunąć studenta")
-print("3. Dodać studenta")
-print("4. Wysłać maile z ocenami")
-print("5. Wyjść z programu")
-choice = input("Wybierz opcję: ")
+    print()
+    print("Co chcesz zrobić?")
+    print("1. Wystawić oceny")
+    print("2. Usunąć studenta")
+    print("3. Dodać studenta")
+    print("4. Wysłać maile z ocenami")
+    print("5. Wyjść z programu")
+    choice = input("Wybierz opcję: ")
 
-if choice == "1":
-    assign_grades(data, max_points)
-    save_data(filename, data)
-    print("Oceny zostały wystawione i zapisane do pliku.")
-elif choice == "2":
-    email = input("Podaj email studenta do usunięcia: ")
-    remove_student(data, email)
-    save_data(filename, data)
-    print("Student został usunięty i zapisany do pliku.")
-elif choice == "3":
-    email = input("Podaj email nowego studenta: ")
-    name = input("Podaj imię nowego studenta: ")
-    surname = input("Podaj nazwisko nowego studenta: ")
-    points = input("Podaj liczbę punktów nowego studenta: ")
-    added = add_student(data, email, name, surname, points)
-    if added:
+    if choice == "1":
+        assign_grades(data, max_points)
         save_data(filename, data)
-        print("Student został dodany i zapisany do pliku.")
+        print("Oceny zostały wystawione i zapisane do pliku.")
+    elif choice == "2":
+        email = input("Podaj email studenta do usunięcia: ")
+        remove_student(data, email)
+        save_data(filename, data)
+        print("Student został usunięty i zapisany do pliku.")
+    elif choice == "3":
+        email = input("Podaj email nowego studenta: ")
+        name = input("Podaj imię nowego studenta: ")
+        surname = input("Podaj nazwisko nowego studenta: ")
+        points = input("Podaj liczbę punktów nowego studenta: ")
+        added = add_student(data, email, name, surname, points)
+        if added:
+            save_data(filename, data)
+            print("Student został dodany i zapisany do pliku.")
+        else:
+            print("Nie można dodać studenta o takim adresie email.")
+    elif choice == "4":
+        send_grades_email(data, email_server, email_from, email_password, max_points)
+        save_data(filename, data)
+        print("Maile z ocenami zostały wysłane i zapisane do pliku.")
+    elif choice == "5":
+        break
     else:
-        print("Nie można dodać studenta o takim adresie email.")
-elif choice == "4":
-    send_grades_email(data, email_server, email_from, email_password, max_points)
-    save_data(filename, data)
-    print("Maile z ocenami zostały wysłane i zapisane do pliku.")
-elif choice == "5":
-    break
-else:
-    print("Niepoprawna opcja, spróbuj ponownie.")
+        print("Niepoprawna opcja, spróbuj ponownie.")
